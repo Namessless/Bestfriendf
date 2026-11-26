@@ -1,0 +1,715 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#100d16">
+    <meta name="description" content="Un pequeño rincón hecho con cariño para alguien especial.">
+
+    <title>Para mi mejor amiga ♡</title>
+
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- JavaScript -->
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- DECORACIÓN DEL FONDO -->
+    <div class="background-decoration" aria-hidden="true">
+        <div class="butterflies"></div>
+        <div class="floating-particles"></div>
+    </div>
+
+
+    <!-- ================================= -->
+    <!-- 1. PANTALLA GIF DE BIENVENIDA -->
+    <!-- ================================= -->
+
+    <section id="intro-screen" class="screen active"
+             data-duration="2000">
+
+        <div class="intro-container">
+
+            <!-- REEMPLAZA ESTA RUTA POR TU GIF -->
+            <img
+                src="gif-inicial.gif"
+                alt="Animación de bienvenida"
+                class="intro-gif"
+            >
+
+            <p class="intro-caption">
+                Un pequeño detalle...
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- 2. PANTALLA DE DEDICATORIA -->
+    <!-- ================================= -->
+
+    <section id="dedication-screen" class="screen" hidden>
+
+        <div class="dedication-container">
+
+            <div class="decorative-symbol">♡</div>
+
+            <h1>Para mi mejor amiga</h1>
+
+            <p>
+                Hay algo especial esperando por ti...
+            </p>
+
+            <button
+                id="dedication-continue"
+                class="main-button"
+                type="button">
+                Continuar
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- 3. INICIO DE SESIÓN -->
+    <!-- ================================= -->
+
+    <section id="login-screen" class="screen" hidden>
+
+        <div class="login-container">
+
+            <div class="login-decoration">🦋</div>
+
+            <h2>Un pequeño acceso</h2>
+
+            <p class="login-description">
+                Antes de entrar, necesito comprobar algo.
+            </p>
+
+
+            <!-- USUARIO -->
+
+            <form id="login-form">
+
+                <div class="input-group">
+
+                    <label for="username">
+                        Tu nombre
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Escribe tu nombre..."
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- CONTRASEÑA -->
+
+                <div class="input-group">
+
+                    <label for="password">
+                        Fecha especial
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Tu contraseña..."
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- MENSAJES DE ERROR -->
+
+                <p
+                    id="username-error"
+                    class="error-message"
+                    role="status"
+                    aria-live="polite">
+                </p>
+
+                <p
+                    id="password-error"
+                    class="error-message"
+                    role="status"
+                    aria-live="polite">
+                </p>
+
+
+                <!-- PISTA DE CONTRASEÑA -->
+
+                <p
+                    id="password-hint"
+                    class="password-hint"
+                    hidden>
+                </p>
+
+
+                <!-- BOTÓN -->
+
+                <button
+                    type="submit"
+                    class="main-button">
+                    Entrar
+                </button>
+
+            </form>
+
+            <p class="login-footer">
+                Hecho por tu mejol amigo ♡
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- 4. AVISO DE USUARIO INCORRECTO -->
+    <!-- ================================= -->
+
+    <section
+        id="username-alert"
+        class="fullscreen-alert"
+        role="alertdialog"
+        aria-labelledby="alert-title"
+        hidden>
+
+        <div class="alert-container">
+
+            <!-- GIF PARA EL AVISO -->
+            <img
+                src="gif-error.gif"
+                alt="Animación de sorpresa"
+                class="alert-gif"
+            >
+
+            <h2 id="alert-title">
+                Es Niggel, animal.
+            </h2>
+
+            <p>
+                ¿En serio olvidaste tu propio nombre?
+            </p>
+
+            <button
+                id="alert-continue"
+                class="main-button"
+                type="button">
+                Perdón....
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- 5. CONTENIDO PRINCIPAL -->
+    <!-- ================================= -->
+
+    <main id="main-content" class="screen" hidden>
+
+
+        <!-- NAVEGACIÓN -->
+
+        <header class="main-header">
+
+            <div class="logo">
+                Para ti <span>◆</span>
+            </div>
+
+            <nav class="main-navigation">
+
+                <a href="#birthday-section">Inicio</a>
+
+                <a href="#letter-section">Carta</a>
+
+                <a href="#gallery-section">Galería</a>
+
+                <a href="#memories-section">Recuerdos</a>
+
+            </nav>
+
+        </header>
+
+      
+<!-- ================================= -->
+<!-- BANNER PRINCIPAL -->
+<!-- ================================= -->
+
+<section id="hero-banner" class="hero-banner">
+
+    <!-- IMAGEN O GIF PRINCIPAL -->
+    <img
+        src="banner-principal.png"
+        alt="Banner principal"
+        class="hero-banner-image"
+    >
+
+    <!-- DEGRADADO OSCURO -->
+    <div class="hero-banner-overlay"></div>
+
+    <!-- CONTENIDO DEL BANNER -->
+    <div class="hero-banner-content">
+
+        <span class="hero-eyebrow">
+            ✧ UN PEQUEÑO rincon PARA TI ✧
+        </span>
+
+        <h1>
+            Bienvenida al ultimo instante de Aha!
+        </h1>
+
+        <p>
+            Un lugar lleno de autismo, cariño y pequeños detalles.
+        </p>
+
+        <a href="#birthday-section" class="hero-banner-button">
+            Descubrir ♡
+        </a>
+
+    </div>
+
+    <!-- DECORACIÓN -->
+    <div class="hero-banner-decoration">
+        ʚɞ
+    </div>
+
+</section>
+
+
+
+        <!-- ================================= -->
+        <!-- 5.1 FELIZ CUMPLEAÑOS -->
+        <!-- ================================= -->
+
+        <section id="birthday-section" class="content-section birthday-section">
+
+            <div class="birthday-decoration">🦋</div>
+
+            <p class="small-heading">
+                UN DÍA ESPECIAL
+            </p>
+
+            <h1>
+                ¡Feliz cumpleaños!
+            </h1>
+
+            <p class="birthday-subtitle">
+                Hoy es un día para celebrar a alguien increíble.
+            </p>
+
+            <!-- ESPACIO PARA TU MENSAJE -->
+
+            <div class="birthday-message">
+
+                <h2>Un día para ti ♡</h2>
+
+                <p>
+                    Bienvenida! al ultimo instante de Aha!...o al ultimo instante de mi memoria
+                  el caso, HOY ES TU CUMPLEAÑOS NIGGER! es de mi honor decirte y ser el primero(espero)
+                  en decirte: feliz cumpleaños nigger. deseo pasar mas tiempo contigo
+                  y estar cada año en tu cumple. ¿Quien sabe? puede y haga una pagina asi anual para ti..
+                </p>
+
+            </div>
+
+            <div class="birthday-symbols">
+                <span>✧</span>
+                <span>♡</span>
+                <span>✧</span>
+            </div>
+
+        </section>
+
+
+        <!-- ================================= -->
+        <!-- 5.2 CARTA PERSONAL -->
+        <!-- ================================= -->
+
+        <section id="letter-section" class="content-section">
+
+            <div class="section-heading">
+
+                <span class="section-symbol">✉</span>
+
+                <h2>Una pequeña carta.</p>
+
+            </div>
+
+
+            <article class="letter-card">
+
+                <h3>Querida amiga...</h3>
+
+                <p>
+                    Nigger. no se si recordaras pero hace tiempo hice un pequeño comentario sobre
+                  dos cosas. Aha y Akivili. y una es la del error, y ambos estan en el banner-principal. me diras
+                  ¿Y eso que tiene que ver? simple, es algo especial de mis cosas autistas
+                  pues eres mi principal amiga en este momento, eres mi Primera y recalco...
+                  ¡EMO DEL MOMENTO! dejando burlas, te quiero, gracias por acompañarme
+                  feliz cumpleaños.
+                </p>
+
+                <p>
+                    Gracias por formar parte de tantos momentos
+                    y por ser alguien tan especial.
+                </p>
+
+                <p class="letter-signature">
+                    Con cariño, Akivili.
+                </p>
+
+            </article>
+
+        </section>
+
+
+        <!-- ================================= -->
+        <!-- 5.3 GALERÍA DE COSAS FAVORITAS -->
+        <!-- ================================= -->
+
+        <section id="gallery-section" class="content-section">
+
+            <div class="section-heading">
+
+                <span class="section-symbol">❀</span>
+
+                <h2>Sus cosas favoritas</h2>
+
+                <p>
+                    Una pequeña colección de cosas que te encantan y no de mi retraso, duh.
+                </p>
+
+            </div>
+
+
+            <div class="photo-gallery">
+
+
+                <!-- FOTO 1 -->
+
+                <article class="photo-card">
+
+                    <img
+                        src="favorito-1.jpg"
+                        alt="Primera cosa favorita"
+                        loading="lazy"
+                    >
+
+                    <div class="photo-caption">
+
+                        <h3>Favorito número uno</h3>
+
+                        <p>Recuerdo esto! es del libro que tanto te gustaba, queria regalarlo... pero no tuve dinero, para otro dia sera, suerte!.</p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- FOTO 2 -->
+
+                <article class="photo-card">
+
+                    <img
+                        src="favorito-2.jpg"
+                        alt="Segunda cosa favorita"
+                        loading="lazy"
+                    >
+
+                    <div class="photo-caption">
+
+                        <h3>Favorito número dos</h3>
+
+                        <p>¿Cómo me iba a olvidar de tu novia? (llego la idea de meterla de repente, ignoremosla, no importa, fue la ultima idea que me dio).</p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- FOTO 3 -->
+
+                <article class="photo-card">
+
+                    <img
+                        src="favorito-3.jpg"
+                        alt="Tercera cosa favorita"
+                        loading="lazy"
+                    >
+
+                    <div class="photo-caption">
+
+                        <h3>Favorito número tres</h3>
+
+                        <p>¿Cómo no? los coreanitos estos, me costo encontrar la imagen en mi galeria para buscarla y traerla al archivo pero son detalles.</p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- FOTO 4 -->
+
+                <article class="photo-card">
+
+                    <img
+                        src="favorito-4.gif"
+                        alt="Cuarta cosa favorita"
+                        loading="lazy"
+                    >
+
+                    <div class="photo-caption">
+
+                        <h3>Favorito número... ¿No es tuyo? callate</h3>
+
+                        <p>Ignoremos este...uhh, no tuve idea que poner al hacer el archivo, asi que, imagina que soy yo recordando cambiar esto a fin de año, jo jo jo..</p>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================= -->
+        <!-- 5.4 RECUERDOS -->
+        <!-- ================================= -->
+
+        <section id="memories-section" class="content-section">
+
+            <div class="section-heading">
+
+                <span class="section-symbol">☾</span>
+
+                <h2>Pequeños recuerdos</h2>
+
+                <p>
+                    Porque hasta los momentos pequeños
+                    pueden significar muchísimo.
+                </p>
+
+            </div>
+
+
+            <div class="memories-container">
+
+                <article class="memory-card">
+
+                    <span class="memory-icon">♡</span>
+
+                    <h3>Un momento especial</h3>
+
+                    <p>
+                        Este es el primero, el momento que te conoci, te sere honesto
+                      olvide tu cara una y otra y otra vez. Pero hey, me reia contigo e intentaba
+                      recordar las cosas...aunque me demorara.:.
+                    </p>
+
+                </article>
+
+
+                <article class="memory-card">
+
+    <span class="memory-icon">♡</span>
+
+    <h3>Un momento unico</h3>
+
+    <p>
+        Este es el primer mensaje que me recuerda haber pasado contigo,
+        y es aquella noche en el que me diste la confianza de liberar
+        mis emociones y confi- uh, hable mucho, le mostrare a Michelle
+        esto asi que, pon una contraseña para que recuerdes mas:
+    </p>
+
+    <button
+        id="special-touch-button"
+        class="special-touch-button"
+        type="button">
+        ANSWER ME! NICOL
+    </button>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================= -->
+        <!-- 5.5 MENSAJE FINAL -->
+        <!-- ================================= -->
+
+        <section id="final-section" class="content-section final-section">
+
+            <div class="final-decoration">🦋</div>
+
+            <h2>Y antes de irte...</h2>
+
+            <p>
+                Nunca olvides lo especial que eres.
+            </p>
+
+            <div class="final-heart">♡</div>
+
+            <p class="final-message">
+                Feliz cumpleaños, Niggel.
+            </p>
+
+        </section>
+
+
+        <!-- ================================= -->
+        <!-- PIE DE PÁGINA -->
+        <!-- ================================= -->
+
+        <footer class="main-footer">
+
+            <p>
+                Hecho especialmente para ti ♡
+            </p>
+
+            <span>
+                ✧ 2026 ✧
+            </span>
+
+        </footer>
+
+
+    </main>
+
+  <!-- ================================= -->
+<!-- PANEL DEL MOMENTO ESPECIAL -->
+<!-- ================================= -->
+
+<section
+    id="special-lock-overlay"
+    class="special-lock-overlay"
+    hidden
+    role="dialog"
+    aria-modal="true"
+    aria-label="Recuerdo privado">
+
+    <div class="special-lock-card">
+
+        <!-- PANEL DE CONTRASEÑA -->
+
+        <div id="special-password-panel" class="special-panel">
+
+            <span class="special-eyebrow">✧ UN RECUERDO PRIVADO ✧</span>
+
+            <h2>Antes de continuar...</h2>
+
+            <p class="special-hint">
+                Pista: «¿Qué me hiciste contarte esa noche?»
+            </p>
+
+            <form id="special-password-form">
+
+                <input
+                    type="password"
+                    id="special-password-input"
+                    placeholder="Escribe la contraseña..."
+                    autocomplete="off"
+                    required
+                >
+
+                <p
+                    id="special-password-error"
+                    class="special-password-error"
+                    role="status"
+                    aria-live="polite">
+                </p>
+
+                <button type="submit" class="special-submit-button">
+                    Desbloquear
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- PANEL DE ESCRITURA: RESPUESTA CORRECTA -->
+
+        <div id="special-writing-panel" class="special-panel" hidden>
+
+            <span class="special-eyebrow">✧ ACCESO CONCEDIDO ✧</span>
+
+            <h2>Ahora puedes leer.</h2>
+
+            <p>
+                Aquella noche que te pude contar con confianza mis inseguridades
+              y temores mas profundos, nigger, ese dia fue inolvidable, conoci a mi mejor amiga
+              y a mi mayor compañera, creeme, ese dia me senti escuchado y con confianza suficiente
+              para abrirme con alguien. tqm.
+            </p>
+
+            <textarea
+                id="special-writing-area"
+                rows="8"
+                placeholder="Escribe aquí..."
+            ></textarea>
+
+            <button
+                id="special-writing-close"
+                class="special-submit-button"
+                type="button">
+                Cerrar
+            </button>
+
+        </div>
+
+
+        <!-- PANEL DE RESPUESTA INCORRECTA -->
+
+        <div id="special-wrong-panel" class="special-panel" hidden>
+
+            <!-- AQUÍ COLOCARÁS TU GIF -->
+            <img
+                src="sal-de-aqui.gif"
+                alt="GIF de acceso denegado"
+                class="special-wrong-gif"
+            >
+
+            <h2>Sal de aquí.</h2>
+
+            <button
+                id="special-wrong-close"
+                class="special-submit-button"
+                type="button">
+                irme
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

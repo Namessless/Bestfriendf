@@ -1,0 +1,1808 @@
+
+/* ==========================================
+   1. CONFIGURACIÓN GENERAL
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Cinzel:wght@400;500;600&display=swap');
+
+:root {
+    --background: #0b0910;
+    --background-light: #120e19;
+    --surface: #181321;
+    --surface-light: #21182d;
+
+    --purple: #9875b8;
+    --purple-light: #c4a4df;
+    --purple-dark: #513a68;
+
+    --pink: #b77f9b;
+    --white: #e9e0ee;
+    --text: #c4b8cb;
+    --muted: #82768d;
+
+    --border: rgba(177, 137, 207, 0.18);
+    --shadow: rgba(0, 0, 0, 0.5);
+
+    --title-font: 'Cormorant Garamond', serif;
+    --body-font: 'DM Sans', sans-serif;
+    --decorative-font: 'Cinzel', serif;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+
+body {
+    background: var(--background);
+    color: var(--text);
+
+    font-family: var(--body-font);
+
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    line-height: 1.7;
+}
+
+
+/* ==========================================
+   2. SELECCIÓN DE TEXTO Y SCROLLBAR
+========================================== */
+
+::selection {
+    background: var(--purple-dark);
+    color: white;
+}
+
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #0c0910;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #493454;
+    border-radius: 20px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--purple);
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+button,
+input {
+    font-family: inherit;
+}
+
+
+/* ==========================================
+   3. FONDO DECORATIVO
+========================================== */
+
+.background-decoration {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 0;
+}
+
+
+.background-decoration::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            ellipse at 15% 20%,
+            rgba(89, 57, 112, 0.16),
+            transparent 42%
+        ),
+        radial-gradient(
+            ellipse at 85% 75%,
+            rgba(111, 53, 88, 0.12),
+            transparent 40%
+        );
+
+    z-index: 0;
+}
+
+
+/* Mariposas */
+
+.butterflies {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0.13;
+}
+
+
+.butterflies::before {
+    content: "ʚɞ";
+
+    position: absolute;
+    top: 12%;
+    left: 12%;
+
+    color: var(--purple-light);
+    font-size: 65px;
+
+    animation: butterflyFloat 9s ease-in-out infinite;
+}
+
+
+.butterflies::after {
+    content: "ʚɞ";
+
+    position: absolute;
+    right: 12%;
+    top: 58%;
+
+    color: var(--pink);
+    font-size: 85px;
+
+    animation: butterflyFloat 11s ease-in-out infinite reverse;
+}
+
+
+.floating-particles {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        radial-gradient(circle, rgba(213, 178, 238, .5) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(178, 133, 205, .35) 1px, transparent 1.5px);
+
+    background-size: 115px 115px, 175px 175px;
+    background-position: 20px 20px, 80px 70px;
+
+    opacity: 0.18;
+
+    animation: particleMove 35s linear infinite;
+}
+
+
+@keyframes butterflyFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(-8deg);
+    }
+
+    50% {
+        transform: translateY(-25px) rotate(9deg);
+    }
+}
+
+
+@keyframes particleMove {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-175px);
+    }
+}
+
+
+/* ==========================================
+   4. PANTALLAS
+========================================== */
+
+.screen {
+    position: relative;
+    z-index: 1;
+
+    min-height: 100vh;
+}
+
+
+.screen[hidden],
+.fullscreen-alert[hidden] {
+    display: none !important;
+}
+
+
+/* Pantallas de bienvenida */
+
+section.screen:not(#main-content) {
+    display: grid;
+    place-items: center;
+
+    padding: 35px 20px;
+
+    text-align: center;
+}
+
+
+/* ==========================================
+   5. INTRODUCCIÓN GIF
+========================================== */
+
+#intro-screen {
+    background:
+        radial-gradient(
+            circle,
+            rgba(68, 42, 88, 0.25),
+            transparent 60%
+        ),
+        var(--background);
+}
+
+
+.intro-container {
+    width: min(90%, 650px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 24px;
+
+    animation: fadeIn 1.2s ease;
+}
+
+
+.intro-gif {
+    display: block;
+
+    width: 100%;
+    max-width: 560px;
+    max-height: 65vh;
+
+    object-fit: contain;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    box-shadow:
+        0 0 25px rgba(140, 90, 180, 0.13),
+        0 0 80px rgba(95, 53, 121, 0.12);
+}
+
+
+.intro-caption {
+    color: var(--muted);
+
+    font-family: var(--title-font);
+    font-size: 22px;
+    font-style: italic;
+
+    letter-spacing: 3px;
+}
+
+
+/* ==========================================
+   6. DEDICATORIA
+========================================== */
+
+.dedication-container {
+    width: min(100%, 650px);
+
+    padding: 55px 30px;
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(33, 24, 45, .95),
+            rgba(15, 11, 21, .96)
+        );
+
+    box-shadow: 0 20px 70px var(--shadow);
+
+    animation: riseIn 1s ease;
+}
+
+
+.decorative-symbol {
+    color: var(--pink);
+
+    font-size: 55px;
+    margin-bottom: 15px;
+
+    animation: heartbeat 2.5s ease-in-out infinite;
+}
+
+
+.dedication-container h1 {
+    font-family: var(--title-font);
+
+    font-size: clamp(40px, 7vw, 68px);
+    font-weight: 500;
+
+    color: var(--white);
+    letter-spacing: 2px;
+}
+
+
+.dedication-container p {
+    color: var(--muted);
+    margin: 12px 0 30px;
+
+    font-family: var(--title-font);
+    font-size: 23px;
+    font-style: italic;
+}
+
+
+/* ==========================================
+   7. BOTONES
+========================================== */
+
+.main-button {
+    position: relative;
+
+    padding: 13px 34px;
+
+    color: var(--white);
+
+    background: linear-gradient(
+        135deg,
+        #563b6a,
+        #382742
+    );
+
+    border: 1px solid rgba(196, 164, 223, .4);
+    border-radius: 5px;
+
+    font-family: var(--decorative-font);
+    font-size: 12px;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition:
+        background .3s ease,
+        box-shadow .3s ease,
+        transform .3s ease;
+}
+
+
+.main-button:hover {
+    background: linear-gradient(
+        135deg,
+        #77538f,
+        #51375e
+    );
+
+    box-shadow: 0 0 25px rgba(157, 113, 188, .3);
+
+    transform: translateY(-3px);
+}
+
+
+.main-button:active {
+    transform: scale(.97);
+}
+
+
+.main-button:focus-visible {
+    outline: 2px solid var(--purple-light);
+    outline-offset: 4px;
+}
+
+
+/* ==========================================
+   8. INICIO DE SESIÓN
+========================================== */
+
+.login-container {
+    width: min(100%, 430px);
+
+    padding: 45px 35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(29, 21, 39, .97),
+            rgba(15, 12, 20, .98)
+        );
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    box-shadow:
+        0 20px 70px rgba(0, 0, 0, .5),
+        0 0 35px rgba(119, 78, 153, .08);
+
+    animation: riseIn 1s ease;
+}
+
+
+.login-decoration {
+    font-size: 42px;
+    margin-bottom: 12px;
+
+    filter: grayscale(.35);
+}
+
+
+.login-container h2 {
+    font-family: var(--title-font);
+    font-size: 38px;
+
+    font-weight: 500;
+    color: var(--white);
+}
+
+
+.login-description {
+    margin: 6px 0 32px;
+
+    color: var(--muted);
+    font-size: 13px;
+}
+
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+
+    text-align: left;
+    gap: 8px;
+
+    margin-bottom: 22px;
+}
+
+
+.input-group label {
+    color: var(--purple-light);
+
+    font-family: var(--decorative-font);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+}
+
+
+.input-group input {
+    width: 100%;
+
+    padding: 14px 15px;
+
+    color: var(--white);
+    background: rgba(9, 7, 13, .7);
+
+    border: 1px solid rgba(172, 128, 202, .24);
+    border-radius: 5px;
+
+    font-size: 14px;
+
+    transition: .3s ease;
+}
+
+
+.input-group input::placeholder {
+    color: #655a70;
+}
+
+
+.input-group input:focus {
+    outline: none;
+
+    border-color: var(--purple);
+
+    box-shadow:
+        0 0 0 3px rgba(152, 117, 184, .1),
+        0 0 20px rgba(152, 117, 184, .12);
+}
+
+
+.login-container .main-button {
+    width: 100%;
+    margin-top: 15px;
+}
+
+
+.error-message {
+    color: #d88b9d;
+
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+
+.password-hint {
+    color: var(--purple-light);
+
+    font-size: 13px;
+    font-style: italic;
+
+    margin: 12px 0;
+}
+
+
+.login-footer {
+    margin-top: 30px;
+
+    color: #665a72;
+    font-family: var(--title-font);
+    font-style: italic;
+
+    font-size: 17px;
+}
+
+
+/* ==========================================
+   9. AVISO DE NOMBRE INCORRECTO
+========================================== */
+
+.fullscreen-alert {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    display: grid;
+    place-items: center;
+
+    padding: 25px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(68, 35, 83, .45),
+            rgba(5, 4, 8, .98) 70%
+        );
+
+    animation: fadeIn .45s ease;
+}
+
+
+.alert-container {
+    width: min(100%, 520px);
+
+    padding: 35px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: rgba(20, 14, 28, .96);
+
+    box-shadow: 0 0 70px rgba(140, 83, 165, .14);
+
+    animation: riseIn .7s ease;
+}
+
+
+.alert-gif {
+    width: 100%;
+    max-width: 290px;
+    max-height: 260px;
+
+    object-fit: contain;
+
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+
+.alert-container h2 {
+    color: var(--pink);
+
+    font-family: var(--title-font);
+    font-size: clamp(30px, 6vw, 45px);
+}
+
+
+.alert-container p {
+    margin: 10px 0 25px;
+
+    color: var(--muted);
+    font-family: var(--title-font);
+    font-size: 20px;
+}
+
+
+/* ==========================================
+   10. CONTENIDO PRINCIPAL
+========================================== */
+
+#main-content {
+    width: 100%;
+    min-height: 100vh;
+
+    display: block;
+}
+
+
+/* ==========================================
+   11. ENCABEZADO Y NAVEGACIÓN
+========================================== */
+
+.main-header {
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 25px;
+
+    padding: 20px 7%;
+
+    background: rgba(12, 9, 17, .91);
+
+    border-bottom: 1px solid var(--border);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+
+.logo {
+    font-family: var(--decorative-font);
+    font-size: 17px;
+
+    color: var(--white);
+    letter-spacing: 2px;
+}
+
+
+.logo span {
+    color: var(--pink);
+}
+
+
+.main-navigation {
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 30px;
+}
+
+
+.main-navigation a {
+    position: relative;
+
+    color: var(--muted);
+
+    font-size: 12px;
+    letter-spacing: 1px;
+
+    transition: color .3s ease;
+}
+
+
+.main-navigation a::after {
+    content: "";
+
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+
+    width: 0;
+    height: 1px;
+
+    background: var(--purple-light);
+
+    transition: width .3s ease;
+}
+
+
+.main-navigation a:hover {
+    color: var(--purple-light);
+}
+
+
+.main-navigation a:hover::after {
+    width: 100%;
+}
+
+
+/* ==========================================
+   12. SECCIONES GENERALES
+========================================== */
+
+.content-section {
+    position: relative;
+
+    z-index: 1;
+
+    width: min(100% - 40px, 1100px);
+
+    margin: 0 auto;
+    padding: 110px 0;
+
+    border-bottom: 1px solid rgba(177, 137, 207, .1);
+}
+
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+
+.section-symbol {
+    display: block;
+
+    color: var(--pink);
+    font-size: 35px;
+
+    margin-bottom: 12px;
+}
+
+
+.section-heading h2 {
+    color: var(--white);
+
+    font-family: var(--title-font);
+    font-size: clamp(36px, 5vw, 50px);
+
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+
+.section-heading p {
+    margin-top: 8px;
+
+    color: var(--muted);
+
+    font-family: var(--title-font);
+    font-size: 20px;
+    font-style: italic;
+}
+
+
+/* ==========================================
+   13. SECCIÓN CUMPLEAÑOS
+========================================== */
+
+.birthday-section {
+    min-height: 750px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(84, 54, 104, .21),
+            transparent 65%
+        );
+}
+
+
+.birthday-decoration {
+    font-size: 56px;
+
+    margin-bottom: 20px;
+
+    opacity: .8;
+    animation: butterflyFloat 6s ease-in-out infinite;
+}
+
+
+.small-heading {
+    color: var(--pink);
+
+    font-family: var(--decorative-font);
+    font-size: 11px;
+
+    letter-spacing: 5px;
+}
+
+
+.birthday-section h1 {
+    margin-top: 15px;
+
+    color: var(--white);
+
+    font-family: var(--title-font);
+    font-size: clamp(48px, 9vw, 88px);
+
+    font-weight: 500;
+    line-height: 1.1;
+
+    text-shadow: 0 0 35px rgba(182, 134, 218, .16);
+}
+
+
+.birthday-subtitle {
+    color: var(--muted);
+
+    font-family: var(--title-font);
+    font-size: clamp(19px, 3vw, 25px);
+
+    font-style: italic;
+    margin: 20px 0 45px;
+}
+
+
+.birthday-message {
+    width: min(100%, 720px);
+
+    padding: 40px;
+
+    background: rgba(27, 20, 36, .72);
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    box-shadow: 0 15px 50px rgba(0, 0, 0, .2);
+}
+
+
+.birthday-message h2 {
+    color: var(--purple-light);
+
+    font-family: var(--title-font);
+    font-size: 32px;
+
+    margin-bottom: 15px;
+}
+
+
+.birthday-message p {
+    line-height: 2;
+    font-size: 14px;
+}
+
+
+.birthday-symbols {
+    margin-top: 40px;
+
+    display: flex;
+    gap: 35px;
+
+    color: var(--pink);
+    font-size: 22px;
+}
+
+
+.birthday-symbols span:nth-child(2) {
+    color: var(--purple-light);
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+
+/* ==========================================
+   14. CARTA PERSONAL
+========================================== */
+
+.letter-card {
+    position: relative;
+
+    width: min(100%, 780px);
+
+    margin: auto;
+
+    padding: 55px 60px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #21192a,
+            #15101c
+        );
+
+    border: 1px solid rgba(187, 151, 210, .25);
+    border-radius: 4px;
+
+    box-shadow: 15px 20px 55px rgba(0, 0, 0, .3);
+}
+
+
+.letter-card::before {
+    content: "♡";
+
+    position: absolute;
+    top: 20px;
+    right: 28px;
+
+    color: var(--pink);
+    font-size: 25px;
+
+    opacity: .7;
+}
+
+
+.letter-card h3 {
+    color: var(--purple-light);
+
+    font-family: var(--title-font);
+    font-size: 34px;
+
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+
+.letter-card p {
+    color: #c3b6ca;
+
+    font-family: var(--title-font);
+    font-size: 21px;
+
+    line-height: 2;
+    margin-bottom: 20px;
+}
+
+
+.letter-card .letter-signature {
+    margin-top: 35px;
+
+    text-align: right;
+
+    color: var(--pink);
+    font-style: italic;
+}
+
+
+/* ==========================================
+   15. GALERÍA DE FOTOS
+========================================== */
+
+.photo-gallery {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 35px;
+}
+
+
+.photo-card {
+    overflow: hidden;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, .25);
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
+
+
+.photo-card:hover {
+    transform: translateY(-8px);
+
+    border-color: rgba(190, 151, 219, .45);
+
+    box-shadow: 0 18px 45px rgba(0, 0, 0, .4);
+}
+
+
+.photo-card img {
+    display: block;
+
+    width: 100%;
+    height: 300px;
+
+    object-fit: cover;
+
+    filter: brightness(.78) saturate(.75);
+
+    transition:
+        filter .5s ease,
+        transform .6s ease;
+}
+
+
+.photo-card:hover img {
+    filter: brightness(1) saturate(.95);
+
+    transform: scale(1.035);
+}
+
+
+.photo-caption {
+    position: relative;
+
+    padding: 22px 25px 25px;
+}
+
+
+.photo-caption h3 {
+    color: var(--purple-light);
+
+    font-family: var(--title-font);
+    font-size: 26px;
+
+    font-weight: 500;
+}
+
+
+.photo-caption p {
+    color: var(--muted);
+    font-size: 13px;
+
+    margin-top: 5px;
+}
+
+
+/* ==========================================
+   16. RECUERDOS
+========================================== */
+
+.memories-container {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 25px;
+}
+
+
+.memory-card {
+    position: relative;
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    background: linear-gradient(
+        145deg,
+        rgba(36, 26, 47, .9),
+        rgba(19, 14, 25, .9)
+    );
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    transition: .35s ease;
+}
+
+
+.memory-card:hover {
+    transform: translateY(-7px);
+
+    border-color: rgba(196, 164, 223, .42);
+
+    background: var(--surface-light);
+}
+
+
+.memory-icon {
+    display: block;
+
+    color: var(--pink);
+    font-size: 35px;
+
+    margin-bottom: 16px;
+}
+
+
+.memory-card h3 {
+    color: var(--purple-light);
+
+    font-family: var(--title-font);
+    font-size: 25px;
+
+    font-weight: 500;
+
+    margin-bottom: 12px;
+}
+
+
+.memory-card p {
+    color: var(--muted);
+
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+
+/* ==========================================
+   17. MENSAJE FINAL
+========================================== */
+
+.final-section {
+    text-align: center;
+
+    padding-top: 130px;
+    padding-bottom: 130px;
+}
+
+
+.final-decoration {
+    font-size: 50px;
+
+    margin-bottom: 20px;
+
+    opacity: .8;
+
+    animation: butterflyFloat 7s ease-in-out infinite;
+}
+
+
+.final-section h2 {
+    color: var(--white);
+
+    font-family: var(--title-font);
+    font-size: clamp(36px, 6vw, 55px);
+
+    font-weight: 500;
+}
+
+
+.final-section > p {
+    color: var(--muted);
+
+    font-family: var(--title-font);
+    font-size: 23px;
+
+    margin-top: 10px;
+}
+
+
+.final-heart {
+    color: var(--pink);
+
+    font-size: 65px;
+    margin: 30px 0;
+
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+
+.final-section .final-message {
+    color: var(--purple-light);
+
+    font-family: var(--decorative-font);
+    font-size: 13px;
+
+    letter-spacing: 4px;
+}
+
+
+/* ==========================================
+   18. PIE DE PÁGINA
+========================================== */
+
+.main-footer {
+    position: relative;
+
+    z-index: 1;
+
+    padding: 35px 20px;
+
+    text-align: center;
+
+    background: #09070d;
+
+    border-top: 1px solid var(--border);
+}
+
+
+.main-footer p {
+    font-family: var(--title-font);
+    font-size: 20px;
+
+    color: var(--text);
+}
+
+
+.main-footer span {
+    display: block;
+
+    margin-top: 8px;
+
+    color: var(--muted);
+    font-family: var(--decorative-font);
+
+    font-size: 10px;
+    letter-spacing: 4px;
+}
+
+
+/* ==========================================
+   19. ANIMACIONES GENERALES
+========================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes riseIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+
+/* ==========================================
+   20. RESPONSIVE - TABLET
+========================================== */
+
+@media (max-width: 850px) {
+
+    .main-header {
+        flex-direction: column;
+
+        padding: 18px 20px;
+        gap: 15px;
+    }
+
+    .main-navigation {
+        gap: 20px;
+    }
+
+    .memories-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* ==========================================
+   21. RESPONSIVE - TELÉFONOS
+========================================== */
+
+@media (max-width: 600px) {
+
+    .main-header {
+        padding: 15px 12px;
+    }
+
+    .main-navigation {
+        gap: 12px 18px;
+    }
+
+    .main-navigation a {
+        font-size: 11px;
+    }
+
+    .content-section {
+        width: min(100% - 32px, 1100px);
+
+        padding: 75px 0;
+    }
+
+    .birthday-section {
+        min-height: 650px;
+    }
+
+    .birthday-message {
+        padding: 28px 20px;
+    }
+
+    .letter-card {
+        padding: 38px 25px;
+    }
+
+    .letter-card p {
+        font-size: 18px;
+    }
+
+    .photo-gallery {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .photo-card img {
+        height: 250px;
+    }
+
+    .memories-container {
+        grid-template-columns: 1fr;
+    }
+
+    .login-container {
+        padding: 35px 23px;
+    }
+
+    .dedication-container {
+        padding: 40px 20px;
+    }
+
+    .intro-gif {
+        max-height: 55vh;
+    }
+
+    .alert-container {
+        padding: 25px 18px;
+    }
+
+}
+
+
+/* ==========================================
+   22. ACCESIBILIDAD
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+    }
+
+}
+
+
+/* ==========================================
+   BANNER PRINCIPAL
+========================================== */
+
+.hero-banner {
+    position: relative;
+
+    width: 100%;
+    min-height: clamp(420px, 75vh, 800px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    background: #100b16;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+/* Imagen o GIF */
+
+.hero-banner-image {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    filter: brightness(.55) saturate(.75);
+
+    z-index: 0;
+}
+
+
+/* Degradado oscuro */
+
+.hero-banner-overlay {
+    position: absolute;
+    inset: 0;
+
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(9, 6, 13, .25),
+            rgba(12, 8, 17, .55),
+            rgba(11, 9, 16, .95)
+        ),
+        linear-gradient(
+            to right,
+            rgba(35, 17, 48, .35),
+            transparent,
+            rgba(35, 17, 48, .35)
+        );
+}
+
+
+/* Texto principal */
+
+.hero-banner-content {
+    position: relative;
+    z-index: 2;
+
+    width: min(90%, 850px);
+
+    padding: 50px 20px;
+
+    animation: riseIn 1.3s ease;
+}
+
+
+.hero-eyebrow {
+    display: block;
+
+    color: var(--pink);
+
+    font-family: var(--decorative-font);
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 25px;
+}
+
+
+.hero-banner-content h1 {
+    color: #f1e7f4;
+
+    font-family: var(--title-font);
+    font-size: clamp(45px, 8vw, 90px);
+
+    line-height: 1.1;
+    font-weight: 500;
+
+    text-shadow:
+        0 0 20px rgba(0, 0, 0, .8),
+        0 0 35px rgba(173, 118, 205, .2);
+}
+
+
+.hero-banner-content p {
+    color: #d0c1d8;
+
+    font-family: var(--title-font);
+    font-size: clamp(17px, 3vw, 24px);
+
+    font-style: italic;
+
+    margin: 22px 0 35px;
+}
+
+
+/* Botón del banner */
+
+.hero-banner-button {
+    display: inline-block;
+
+    padding: 13px 35px;
+
+    color: var(--white);
+
+    background: rgba(64, 43, 79, .7);
+
+    border: 1px solid rgba(196, 164, 223, .55);
+    border-radius: 4px;
+
+    font-family: var(--decorative-font);
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    transition: .35s ease;
+}
+
+
+.hero-banner-button:hover {
+    background: rgba(125, 83, 151, .8);
+
+    box-shadow:
+        0 0 20px rgba(164, 115, 194, .35);
+
+    transform: translateY(-4px);
+}
+
+
+/* Mariposa decorativa */
+
+.hero-banner-decoration {
+    position: absolute;
+
+    z-index: 2;
+
+    bottom: 25px;
+    right: 7%;
+
+    color: rgba(207, 170, 232, .6);
+
+    font-size: 55px;
+
+    animation: butterflyFloat 6s ease-in-out infinite;
+}
+
+
+/* Versión móvil */
+
+@media (max-width: 600px) {
+
+    .hero-banner {
+        min-height: 520px;
+    }
+
+    .hero-banner-content {
+        padding: 30px 10px;
+    }
+
+    .hero-eyebrow {
+        font-size: 9px;
+        letter-spacing: 3px;
+    }
+
+    .hero-banner-content h1 {
+        font-size: 48px;
+    }
+
+    .hero-banner-content p {
+        font-size: 19px;
+    }
+
+    .hero-banner-decoration {
+        right: 5%;
+        bottom: 15px;
+    }
+
+}
+/* ================================= */
+/* BOTÓN TOCAR AQUÍ */
+/* ================================= */
+
+.special-touch-button {
+    margin-top: 18px;
+    padding: 12px 25px;
+    color: #e8d8f2;
+    background: #17111e;
+    border: 1px solid #765b86;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.special-touch-button:hover {
+    background: #35233f;
+    border-color: #c4a4df;
+    transform: translateY(-3px);
+}
+
+
+/* ================================= */
+/* FONDO OSCURO DE PANTALLA COMPLETA */
+/* ================================= */
+
+.special-lock-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+
+    display: grid;
+    place-items: center;
+
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.96);
+    backdrop-filter: blur(8px);
+}
+
+.special-lock-overlay[hidden],
+.special-panel[hidden] {
+    display: none !important;
+}
+
+
+/* ================================= */
+/* PANEL CENTRAL */
+/* ================================= */
+
+.special-lock-card {
+    width: min(100%, 480px);
+    padding: 35px 25px;
+
+    background: #08070a;
+    border: 1px solid #302538;
+    border-radius: 8px;
+
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    text-align: center;
+}
+
+.special-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.special-eyebrow {
+    color: #a98bbd;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+}
+
+.special-lock-card h2 {
+    margin: 5px 0;
+    color: #e7d9ed;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2rem;
+}
+
+.special-hint,
+.special-panel p {
+    color: #a99cac;
+    line-height: 1.6;
+}
+
+
+/* ================================= */
+/* BARRA NEGRA DE CONTRASEÑA */
+/* ================================= */
+
+#special-password-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+#special-password-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+
+    color: #eee;
+    background: #000;
+    border: 1px solid #51445a;
+    border-radius: 4px;
+
+    font-family: inherit;
+    font-size: 1rem;
+    text-align: center;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+#special-password-input:focus {
+    border-color: #a98bbd;
+    box-shadow: 0 0 12px rgba(169, 139, 189, 0.2);
+}
+
+.special-password-error {
+    min-height: 18px;
+    margin: 0;
+    color: #c982a0 !important;
+    font-size: 0.85rem;
+}
+
+
+/* ================================= */
+/* ÁREA PARA ESCRIBIR */
+/* ================================= */
+
+#special-writing-area {
+    width: 100%;
+    min-height: 180px;
+    box-sizing: border-box;
+    resize: vertical;
+
+    padding: 15px;
+    color: #eee;
+    background: #050505;
+    border: 1px solid #51445a;
+    border-radius: 5px;
+
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.6;
+    outline: none;
+}
+
+#special-writing-area:focus {
+    border-color: #a98bbd;
+}
+
+
+/* ================================= */
+/* BOTONES DEL PANEL */
+/* ================================= */
+
+.special-submit-button {
+    padding: 12px 28px;
+
+    color: #f0e7f5;
+    background: #302239;
+    border: 1px solid #765b86;
+    border-radius: 4px;
+
+    font-family: inherit;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.special-submit-button:hover {
+    background: #493353;
+    border-color: #c4a4df;
+}
+
+
+/* ================================= */
+/* GIF DE RESPUESTA INCORRECTA */
+/* ================================= */
+
+.special-wrong-gif {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    max-height: 260px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+#special-wrong-panel h2 {
+    color: #d8b6c9;
+}
+
+
+/* ================================= */
+/* RESPONSIVE */
+/* ================================= */
+
+@media (max-width: 480px) {
+    .special-lock-card {
+        padding: 28px 18px;
+    }
+
+    .special-lock-card h2 {
+        font-size: 1.7rem;
+    }
+}
